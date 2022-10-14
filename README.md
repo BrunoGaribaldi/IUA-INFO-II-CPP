@@ -5,3 +5,4 @@ This repository contains some practical exercises related to c/c++ proposed by t
 TOPICS: 
 <<Pointers
 <<Self-referenced structures
+<<Dinamic memory
