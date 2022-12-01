@@ -28,50 +28,50 @@ public:
 	float getprom_cba (){
 		return prom_cba;
 	};
-	float getprom_stafe (){
-		return prom_stafe;
-	};
-	float getprom_mndza (){
-		return prom_mndza;
-	};
-	void set_prom_cba (){
-		prom_cba=temperaturas_cba/contador_cba;
-	};
-	void set_prom_stafe (){
-		prom_stafe=temperaturas_stafe/contador_stafe;
-	};
-	void set_prom_mndza (){
-		prom_mndza=temperaturas_mndza/contador_mndza;
-	};
-	void pimientos (){
-		dif_cba=23-prom_cba; 
-		if (dif_cba<0)
-		{
-			(dif_cba=dif_cba*-1);
-		}
-		dif_stafe=23-prom_stafe; 
-		if (dif_stafe<0)
-		{
-			(dif_stafe=dif_stafe*-1);
-		}
-		dif_mndza=23-prom_mndza; 
-		if (dif_mndza<0)
-		{
-			(dif_mndza=dif_mndza*-1);
-		}
-		if((dif_cba<dif_stafe)&&(dif_cba<dif_mndza))
-		{
-			cout<<"\nLa mejor provincia para cultivar pimientos es Cordoba con "<<prom_cba<<" grados"<<endl; 
-		}
-		if((dif_mndza<dif_stafe)&&(dif_mndza<dif_cba))
-		{
-			cout<<"\nLa mejor provincia para cultivar pimientos es Mendoza con "<<prom_mndza<<" grados"<<endl; 
-		}
-		if((dif_stafe<dif_cba)&&(dif_stafe<dif_mndza))
-		{
-			cout<<"\nLa mejor provincia para cultivar pimientos es Santa fe con "<<prom_stafe<<" grados"<<endl; 
-		}
-	};
+		float getprom_stafe (){
+			return prom_stafe;
+		};
+			float getprom_mndza (){
+				return prom_mndza;
+			};
+				void set_prom_cba (){
+					prom_cba=temperaturas_cba/contador_cba;
+				};
+					void set_prom_stafe (){
+						prom_stafe=temperaturas_stafe/contador_stafe;
+					};
+						void set_prom_mndza (){
+							prom_mndza=temperaturas_mndza/contador_mndza;
+						};
+							void pimientos (){
+								dif_cba=23-prom_cba; 
+								if (dif_cba<0)
+								{
+									(dif_cba=dif_cba*-1);
+								}
+								dif_stafe=23-prom_stafe; 
+								if (dif_stafe<0)
+								{
+									(dif_stafe=dif_stafe*-1);
+								}
+								dif_mndza=23-prom_mndza; 
+								if (dif_mndza<0)
+								{
+									(dif_mndza=dif_mndza*-1);
+								}
+								if((dif_cba<dif_stafe)&&(dif_cba<dif_mndza))
+								{
+									cout<<"\nLa mejor provincia para cultivar pimientos es Cordoba con "<<prom_cba<<" grados"<<endl; 
+								}
+								if((dif_mndza<dif_stafe)&&(dif_mndza<dif_cba))
+								{
+									cout<<"\nLa mejor provincia para cultivar pimientos es Mendoza con "<<prom_mndza<<" grados"<<endl; 
+								}
+								if((dif_stafe<dif_cba)&&(dif_stafe<dif_mndza))
+								{
+									cout<<"\nLa mejor provincia para cultivar pimientos es Santa fe con "<<prom_stafe<<" grados"<<endl; 
+								}
+							};
 };
 struct timestamp
 {
@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
 	float temp_cba=0,temp_mndza=0,temp_stafe=0;
 	int opt;
 	char cont;
-
+	
 	FILE *fp; 
 	fp=fopen("./data_set.txt", "rb");
 	
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 		}
 		if(c.provinceId>3||c.provinceId<1)
 		{
-			cout<<"El codigo de provincia "<<c.provinceId<<" no existe"<<endl;
+			printf("ººErrorºº\nCodigo Ingresado %d no ha sido encontrado\n", c.provinceId);
 		}
 	}
 	temp_prom(&head_ctyprm_cba,head_cba);
@@ -198,78 +198,81 @@ int main(int argc, char *argv[])
 	p.set_prom_stafe();
 	p.set_prom_mndza();
 	do{
-		cout<<"\n***Menú de opciones***\n"<<endl;
-		cout<<"\nIngrese:\n1:Total de las muestras de cada provincia\n2:Temperatura promedio de cada provincia\n3:Temperatura promedio de cada ciudad";
-		cout<<"\n4:Ciudad mas calida de cada provincia\n5:Ciudad mas fria de cada provincia\n6:Dia mas frio de cada provincia\n7:Dia mas calido de cada ciudad\n8:Mejor provincia para el cultivo de pimientos\n";
-		cin>>opt; 
+		printf("\n***Menu de opciones***\n");
+		printf("\nIngrese:\n1:Total de las muestras de cada provincia\n2:Temperatura promedio de cada provincia\n3:Temperatura promedio de cada ciudad");
+		printf("\n4:Ciudad mas calida de cada provincia\n5:Ciudad mas fria de cada provincia\n6:Dia mas frio de cada provincia\n7:Dia mas calido de cada ciudad\n8:Mejor provincia para el cultivo de pimientos\n");
+		scanf("%d", &opt); 
 		switch (opt)
 		{
 		case 1://contadores de cada provincia
-			printf("\n\n\n\nContador Cba: %d - Contador Stafe: %d - Contador Mndza: %d", ctr_cba,ctr_stafe,ctr_mndza);
+			printf("\n\n\nCantidad de Muestras de Cordoba: %d\nCantidad de Muestras de Santa Fe: %d\nCantidad de Muestras de Mendoza: %d\n", ctr_cba,ctr_stafe,ctr_mndza);
+			printf("Cantidad de Muestras totales: %d\n\n", (ctr_cba+ctr_mndza+ctr_stafe));
 			break; 
 		case 2://promedios de provincias
-			cout<<"\nPromedio Cordoba "; 
-			cout<<p.getprom_cba()<<endl;
-			cout<<"\nPromedio Santa Fe "; 
+			printf("\nPromedio Cordoba \n"); 
+			cout<<p.getprom_cba()<<endl; ///////////////////////////////////////////////////////////////////
+			printf("\nPromedio Santa Fe \n"); 
 			cout<<p.getprom_stafe()<<endl;
-			cout<<"\nPromedio Santa Mendoza "; 
+			printf("\nPromedio Santa Mendoza \n"); 
 			cout<<p.getprom_mndza()<<endl;
 			break; 
 		case 3://promedios de cada ciudad
 			printf("\n***TEMPERATURAS PROMEDIO***\n");
 			printprom(head_ctyprm_cba,head_ctyprm_mndza,head_ctyprm_stafe);
 			break; 
-		case 4://ciudad más calida de cada provincia
-			cout<<"\nCiudades con temperaturas más calidas"<<endl; 
-			cout<<"\nCiudad más calida de Cordoba"<<endl;
+		case 4://ciudad m?s calida de cada provincia
+			printf("\nCiudades con temperaturas m?s calidas\n"); 
+			printf("\nCiudad m?s calida de Cordoba\n");
 			calido(head_ctyprm_cba);
-			cout<<"\nCiudad más calida de Santa fe"<<endl;
+			printf("\nCiudad m?s calida de Santa fe\n");
 			calido(head_ctyprm_stafe);
-			cout<<"\nCiudad más calida de Mendoza"<<endl;
+			printf("\nCiudad m?s calida de Mendoza\n");
 			calido(head_ctyprm_mndza);
 			break; 
 		case 5://ciudad mas fria de cada provincia
-			cout<<"\nCiudades con temperaturas más frias"<<endl; 
-			cout<<"\nCiudad más fria de Cordoba"<<endl;
+			printf("\nCiudades con temperaturas m?s frias\n"); 
+			printf("\nCiudad m?s fria de Cordoba\n");
 			frio(head_ctyprm_cba);
-			cout<<"\nCiudad más fria de Santa fe"<<endl;
+			printf("\nCiudad m?s fria de Santa fe\n");
 			frio(head_ctyprm_stafe);
-			cout<<"\nCiudad más fria de Mendoza"<<endl;
+			printf("\nCiudad m?s fria de Mendoza\n");
 			frio(head_ctyprm_mndza);
 			break; 
-		case 6://dia más frio de cada provincia
-			cout<<"\nDias más frios de cada provincia"<<endl; 
-			cout<<"Día más frio de córdoba"<<endl; 
+		case 6://dia m?s frio de cada provincia
+			printf("\nDias m?s frios de cada provincia\n"); 
+			printf("\nD?a m?s frio de c?rdoba\n"); 
 			d_frio(head_cba);
-			cout<<"Día más frio de santa fe"<<endl; 
+			printf("D?a m?s frio de santa fe\n"); 
 			d_frio(head_stafe);
-			cout<<"Día más frio de mendoza"<<endl; 
+			printf("D?a m?s frio de mendoza\n"); 
 			d_frio(head_mndza);
 			break; 
-		case 7://dia más calido de cada ciudad
+		case 7://dia m?s calido de cada ciudad
 			d_cal(head_cba,&head_cal_cba);
-			cout<<"\nDias más calidos de las ciudades de cordoba"<<endl; 
+			printf("\n\tDias m?s calidos de las ciudades de cordoba\n\n"); 
 			printd_cal(head_cal_cba);
 			d_cal(head_stafe,&head_cal_stafe);
-			cout<<"\nDias más calidos de las ciudades de Santa Fe"<<endl;
+			printf("\n\tDias m?s calidos de las ciudades de Santa Fe\n\n");
 			printd_cal(head_cal_stafe);
 			d_cal(head_mndza,&head_cal_mndza);
-			cout<<"\nDias más calidos de las ciudades de Mendoza"<<endl; 
+			printf("\n\tDias m?s calidos de las ciudades de Mendoza\n\n");
 			printd_cal(head_cal_mndza);
 			break; 
 		case 8://Mejor provincia para el cultivo de pimientos
 			p.pimientos();
 			break; 
 		default: 
-			cout<<"\nse ha ingresado mal la opción"<<endl; 
+			printf("\nse ha ingresado mal la opcion\n"); 
 			break; 
 		}
 		cout<<"\ncontinuar en el menu? [s/n]"<<endl; 
 		cin>>cont;
+		//		printf("\ncontinuar en el menu [s/n]: \n"); 
+		//		scanf("%c", &cont);
 	}while((cont=='s')||(cont=='S'));
 	
-	cout<<"\nDesea imprimir todos los datos??[s/n]"<<endl;
-	cin>>cont; 
+	printf("\nDesea imprimir todos los datos??[s/n] \n");
+	scanf("%c", &cont); 
 	if ((cont=='s')||(cont=='S'))
 	{
 		print(head_cba,head_stafe,head_mndza);
@@ -283,7 +286,7 @@ void push (struct node** head, struct city c, float *temperature)//push de lista
 	newnode=(struct node*)malloc(sizeof(struct node));
 	if(newnode==NULL)
 	{
-		cout<<"\nNo hay memoria disponible"<<endl; 
+		printf("\nno hay memoria suficiente");
 		exit (1);//Exit 1 es para errores en la memoria
 	}else{
 		newnode->c=c;
@@ -341,16 +344,16 @@ void temp_prom(struct city_prom **head, struct node *node)//push de listas de pr
 			newnode=(struct city_prom*)malloc(sizeof(struct city_prom));
 			if(newnode==NULL)
 			{
-				cout<<"\nNo hay memoria disponible"; 
+				printf("\nno hay memoria disponible");
 				exit(1);
 			}else{
-			newnode->next=NULL; 
-			newnode->ctr=1;
-			strcpy(newnode->name,temp_node->c.city_name);
-			newnode->id=temp_node->c.cityId;
-			newnode->temperature=temp_node->c.m.temp;
-			*head=newnode;
-			counter++;
+				newnode->next=NULL; 
+				newnode->ctr=1;
+				strcpy(newnode->name,temp_node->c.city_name);
+				newnode->id=temp_node->c.cityId;
+				newnode->temperature=temp_node->c.m.temp;
+				*head=newnode;
+				counter++;
 			}
 		}else{
 			ret=strcmp(newnode->name,temp_node->c.city_name);
@@ -385,25 +388,25 @@ void temp_prom(struct city_prom **head, struct node *node)//push de listas de pr
 void printprom(struct city_prom *head_ctyprm_cba, struct city_prom *head_ctyprm_mndza, struct city_prom *head_ctyprm_stafe)//impresion lista promedios de cada ciudad
 {
 	struct city_prom *temp=NULL;
-	printf("\n***Ciudades de cordoba***\n\nCityId \t CityName \t\t Temperature\n");
+	printf("\n\t\t***Ciudades de cordoba***\n\n\t\tCityId \t CityName \t\t Temperature\n");
 	temp=head_ctyprm_cba;
 	while(temp!=NULL)
 	{
-		printf("\t%d \t %s \t\t %f \n", temp->id, temp->name, (temp->temperature)/temp->ctr);
+		printf("\t\t%d \t %s \t\t %f \n", temp->id, temp->name, (temp->temperature)/temp->ctr);
 		temp=temp->next;
 	}
-	printf("\n***Ciudades de santa fe***\n\nCityId \t CityName \t\t Temperature\n");
+	printf("\n\t\t***Ciudades de santa fe***\n\n\t\tCityId \t CityName \t\t Temperature\n");
 	temp=head_ctyprm_stafe;
 	while(temp!=NULL)
 	{
-		printf("\t%d \t %s \t\t %f \n", temp->id, temp->name, (temp->temperature)/temp->ctr);
+		printf("\t\t%d \t %s \t\t %f \n", temp->id, temp->name, (temp->temperature)/temp->ctr);
 		temp=temp->next;
 	}
-	printf("\n***Ciudades de mendoza***\n\nCityId \t CityName \t\t Temperature\n");
+	printf("\n\t\t***Ciudades de mendoza***\n\n\t\tCityId \t CityName \t\t Temperature\n");
 	temp=head_ctyprm_mndza;
 	while(temp!=NULL)
 	{
-		printf("\t%d \t %s \t\t %f \n", temp->id, temp->name, (temp->temperature)/temp->ctr);
+		printf("\t\t%d \t %s \t\t %f \n", temp->id, temp->name, (temp->temperature)/temp->ctr);
 		temp=temp->next;
 	}
 }
@@ -432,12 +435,12 @@ void calido(struct city_prom *head)//ciudad mas calida de cada provincia
 		}	
 		temp=temp->next;
 	}
-	cout<<"ID "<<id; 
-	cout<<"\tNOMBRE "<<name; 
-	cout<<"\tTEMPERATURA "<<temperature<<endl; 
+	printf("ID: %d \n", id);
+	printf("NOMBRE: %s \n", name);
+	printf("TEMPERATURA: %f\n", temperature);
 	
 }
-void frio (struct city_prom *head)//ciudad más fria de cada provincia
+void frio (struct city_prom *head)//ciudad m?s fria de cada provincia
 {
 	struct city_prom *temp=NULL; 
 	int id;
@@ -462,13 +465,14 @@ void frio (struct city_prom *head)//ciudad más fria de cada provincia
 		}	
 		temp=temp->next;
 	}
-	cout<<"ID "<<id; 
-	cout<<"\tNOMBRE "<<name; 
-	cout<<"\tTEMPERATURA "<<temperature<<endl; 
+	printf("ID: %d \n", id);
+	printf("NOMBRE: %s \n", name);
+	printf("TEMPERATURA: %f\n", temperature);
 	
 }
-void d_frio (struct node* head)//dia más frio de cada provincia
+void d_frio (struct node* head)//dia m?s frio de cada provincia
 {
+	printf("\n");
 	struct node *temp=NULL; 
 	int id;
 	int dia; 
@@ -498,11 +502,10 @@ void d_frio (struct node* head)//dia más frio de cada provincia
 		}
 		temp=temp->next;
 	}
-	cout<<"ID "<<id<<endl; 
-	cout<<"NOMBRE "<<nombre<<endl; 
-	cout<<"DIA "<<dia<<endl; 
-	cout<<"MES "<<mes<<endl;
-	cout<<"TEMPERATURA "<<temperatura<<endl; 
+	printf("ID: %d\n", id);
+	printf("NOMBRE: %s\n", nombre);
+	printf("FECHA: %d/%d\n", dia, mes); 
+	printf("TEMPERATURA: %f\n\n", temperatura);
 }
 void d_cal (struct node *node,struct cal **head)//dia mas calido de cada ciudad
 {
@@ -519,7 +522,7 @@ void d_cal (struct node *node,struct cal **head)//dia mas calido de cada ciudad
 			newnode=(struct cal*)malloc(sizeof(struct cal));
 			if(newnode==NULL)
 			{
-				cout<<"\nNo hay memoria disponible"; 
+				printf("No Hay Memoria Disponible"); 
 				exit(1);
 			}else{
 				ctr=1;
@@ -572,15 +575,14 @@ void printd_cal(struct cal*head)// imprimir dia mas calido de cada ciudad
 {
 	struct cal *temp=NULL; 
 	temp=head;
-	cout<<"\tID\tNOMBRE\tTEMPERATURA\tDIA\tMES"<<endl; 
+	printf("\tID\tNOMBRE\tTEMPERATURA\tDIA\tMES\n"); 
 	while(temp!=NULL)
 	{
-		cout<<"\t"<<temp->Id;
-		cout<<"\t"<<temp->name;
-		cout<<"\t"<<temp->temperature;
-		cout<<"\t"<<temp->day;
-		cout<<"\t"<<temp->month;
-		cout<<endl; 
+		printf("\t%d",temp->Id);
+		printf("\t%s",temp->name);
+		printf("\t%f",temp->temperature);
+		printf("\t%d",temp->day);
+		printf("\t%d\n",temp->month);
 		temp=temp->next;
 	}
 }
